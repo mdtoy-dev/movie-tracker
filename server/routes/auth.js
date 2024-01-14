@@ -19,16 +19,21 @@ passport.use(
         lastName: profile.name.familyName,
         profileImage: profile.photos[0].value,
       };
+
       try {
         let user = await User.findOne({ googleId: profile.id });
+
         if (user) {
-          done(null, user);
-        } else {
-          user = await User.create(newUser);
-          done(null, user);
+          // User already exists, no need to create a new one
+          return done(null, user);
         }
+
+        // User doesn't exist, create a new one
+        user = await User.create(newUser);
+        return done(null, user);
       } catch (error) {
-        console.log(error);
+        console.error(error);
+        return done(error, null); // Pass the error to the `done` function
       }
     }
   )
