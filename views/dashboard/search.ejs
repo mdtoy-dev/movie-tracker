@@ -1,0 +1,17 @@
+<div class="container-fluid container-fluid-custom pb-5 mb-5">
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+        <% if(searchResults != '') { %>
+            <% searchResults.forEach(function (movie, index) { %>
+            
+                <a href="/dashboard/item/<%= movie._id %>">
+                <h4><%= movie.title %></h4>
+                </a>
+                <p class="card-text"><%= movie.body %></p>
+            
+            <% }) %>
+        <% } else { %>
+            <p>No items found.</p>
+        <% } %>
+
+    </div>
+</div>
