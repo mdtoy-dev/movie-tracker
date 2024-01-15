@@ -32,3 +32,4 @@ The Movie Tracker app is a web application that allows users to keep track of th
 - Mongoose
 - EJS (Embedded JavaScript) for templating
 - Passport.js for authentication
+ 
