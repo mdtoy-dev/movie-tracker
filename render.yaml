@@ -1,0 +1,25 @@
+# render.yaml
+
+services:
+  - name: movie-tracker
+    env:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        value: ${MONGODB_URI}
+      - key: GOOGLE_CLIENT_ID
+        value: ${GOOGLE_CLIENT_ID}
+      - key: GOOGLE_CLIENT_SECRET
+        value: ${GOOGLE_CLIENT_SECRET}
+      - key: GOOGLE_CALLBACK_URL
+        value: ${GOOGLE_CALLBACK_URL}
+    envFiles:
+      - .env
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+
+databases:
+  - name: movie-tracker
+    plan: mongodb
+    memory: 512M
